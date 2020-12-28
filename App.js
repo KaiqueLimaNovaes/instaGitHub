@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import imagem from './astronautagame.png';
 
@@ -8,23 +8,20 @@ function InstaGitHubCard({githubUser}){
   return(
     <View>
       {/*instaCardHeader*/}
-      <View>
-        <Text>{githubUser}</Text>
-      </View>
-      {/*instaCardHeader*/}
-      
-      {/*instaCardImage*/}
-      <View>
+      <View style={{ flexDirection: 'row', padding: 15, alignItems:'center' }}>
         <Image
           style={{
-            width: 60,
-            height: 60,
-            borderRadius: 30,
+            width: 50,
+            height: 50,
+            borderRadius: 25,
           }}
           source={{uri:`https://github.com/${githubUser}.png`}}
         />
+        <Text style={{ marginLeft: 10 }}>{githubUser}</Text>
       </View>
+      {/*instaCardHeader*/}
       
+      {/*instaCardImage*/}     
       <Image
         style={{
           width: '100%',
@@ -35,10 +32,11 @@ function InstaGitHubCard({githubUser}){
       {/*instaCardImage*/}
 
       {/*footer*/}
-      <View>
-        <Text>
+      <View style={{ flexDirection: 'row', padding: 15, alignItems:'center' }}>
+        <TouchableOpacity>
           <AntDesign name="hearto" size={24} color="black" />
-        </Text>
+          <AntDesign name="heart" size={24} color="red" />
+        </TouchableOpacity>
       </View>
       {/*footer*/}
     </View>
@@ -47,7 +45,7 @@ function InstaGitHubCard({githubUser}){
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <ScrollView>
         {
           [
@@ -60,7 +58,7 @@ export default function App() {
           ].map((githubUser) => <InstaGitHubCard key={githubUser} githubUser={githubUser} />)
         }
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 }
 
