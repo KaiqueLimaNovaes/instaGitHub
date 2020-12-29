@@ -1,10 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, {useState} from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import imagem from './astronautagame.png';
 
 function InstaGitHubCard({githubUser}){
+  const [liked, setLikeState] = useState(false);
+
   return(
     <View>
       {/*instaCardHeader*/}
@@ -33,9 +35,9 @@ function InstaGitHubCard({githubUser}){
 
       {/*footer*/}
       <View style={{ flexDirection: 'row', padding: 15, alignItems:'center' }}>
-        <TouchableOpacity>
-          <AntDesign name="hearto" size={24} color="black" />
-          <AntDesign name="heart" size={24} color="red" />
+        <TouchableOpacity onPress={() => setLikeState(!liked)}>
+          {liked && <AntDesign name="heart" size={24} color="red" />}
+          {!liked && <AntDesign name="hearto" size={24} color="black" />}          
         </TouchableOpacity>
       </View>
       {/*footer*/}
